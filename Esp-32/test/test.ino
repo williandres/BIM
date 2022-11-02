@@ -1,7 +1,7 @@
 const int trigPin = 5;
 const int echoPin = 18;
 const int LED = 19;
-
+const int LED_ERROR = 21;
 //define sound speed in cm/uS
 #define SOUND_SPEED 0.034
 
@@ -15,6 +15,7 @@ void setup() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin, INPUT); // Sets the echoPin as an Input
   pinMode(LED, OUTPUT); // Led
+  pinMode(LED_ERROR, OUTPUT); // Led error 
 }
 
 void loop() {
@@ -34,16 +35,20 @@ void loop() {
   
   // Prints the distance in the Serial Monitor
   if (distanceCm < 500){
-    delay_led = distanceCm*2;
+    digitalWrite(LED_ERROR, LOW);
+    delay_led = distanceCm*3;
     Serial.print("Distance (cm): ");
     Serial.println(distanceCm);
     digitalWrite(LED, HIGH);
     delay(delay_led);
-    digitalWrite(LED, LOW); 
+    digitalWrite(LED, LOW);
+    delay(delay_led); 
     }
   else{
-    Serial.println("Error ");
-    digitalWrite(LED, LOW);  
+    digitalWrite(LED_ERROR, HIGH);
+    Serial.print("Error ---> "); 
+    Serial.print("Distance (cm): ");
+    Serial.println(distanceCm);
     }
   delay(10);
   }
