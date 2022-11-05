@@ -98,6 +98,21 @@ void loop() {
   // Prints the distance in the Serial Monitor 
   // Green LED twinkle means distance
   // Red LED means a mistake in the data capturing
-  Serial.print("SENSOR 2 --- Distance (cm): ");
-  Serial.println(distanceCm_DOWN);
+  if (distanceCm_DOWN < 500)
+    {
+    digitalWrite(LED_ERROR_DOWN, LOW);
+    delay_led_DOWN = distanceCm_DOWN;
+    Serial.print("SENSOR 2 --- Distance (cm): ");
+    Serial.println(distanceCm_DOWN);
+    digitalWrite(LED_DOWN, HIGH);
+    delay(delay_led_DOWN);
+    digitalWrite(LED_DOWN, LOW);
+    delay(delay_led_DOWN); 
+    }
+  else{
+    digitalWrite(LED_ERROR_DOWN, HIGH);
+    Serial.print("SENSOR 2 --- Error ---> "); 
+    Serial.print("Distance (cm): ");
+    Serial.println(distanceCm_DOWN);
+    }
   }
