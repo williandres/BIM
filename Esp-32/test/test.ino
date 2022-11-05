@@ -38,35 +38,28 @@ void setup() {
 }
 
 void loop() {
-  // * ULTRASONIC SENSOR 1 - 2 *
+
+  // * ULTRASONIC SENSOR 1 *
   // Clears the trigPin
   digitalWrite(trigPin_UP, LOW);
-  digitalWrite(trigPin_DOWN, LOW);
   delayMicroseconds(2);
   // Sets the trigPin on HIGH state for 10 micro seconds
   digitalWrite(trigPin_UP, HIGH);
-  digitalWrite(trigPin_DOWN, HIGH);
   delayMicroseconds(10);
-  digitalWrite(trigPin_UP, LOW);
-  digitalWrite(trigPin_DOWN, LOW);
-
-  
-
+  digitalWrite(trigPin_UP, LOW);  
   
   // Reads the echoPin, returns the sound wave travel time in microseconds
   duration_UP = pulseIn(echoPin_UP, HIGH); //ULTRASONIC SENSOR 1
-  //duration_DOWN = pulseIn(echoPin_DOWN, HIGH); //ULTRASONIC SENSOR 2
+  
   
   // Calculate the distance
   distanceCm_UP = duration_UP * SOUND_SPEED/2; //ULTRASONIC SENSOR 1
-  distanceCm_DOWN = duration_DOWN * SOUND_SPEED/2; //ULTRASONIC SENSOR 2
+
 
   // * ULTRASONIC SENSOR 1 *
   // Prints the distance in the Serial Monitor 
   // Green LED twinkle means distance
   // Red LED means a mistake in the data capturing
-  Serial.print("SENSOR 2 --- Distance (cm): ");
-  Serial.println(distanceCm_DOWN);
   if (distanceCm_UP < 500)
     {
     digitalWrite(LED_ERROR_UP, LOW);
@@ -85,9 +78,26 @@ void loop() {
     Serial.println(distanceCm_UP);
     }
 
+    
+  // * ULTRASONIC SENSOR 2 *
+  // Clears the trigPin
+  digitalWrite(trigPin_DOWN, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin_DOWN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin_DOWN, LOW);
+
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration_DOWN = pulseIn(echoPin_DOWN, HIGH); //ULTRASONIC SENSOR 2
+  
+  // Calculate the distance 
+  distanceCm_DOWN = duration_DOWN * SOUND_SPEED/2; //ULTRASONIC SENSOR 2
+  
   // * ULTRASONIC SENSOR 2 *
   // Prints the distance in the Serial Monitor 
   // Green LED twinkle means distance
   // Red LED means a mistake in the data capturing
-   
+  Serial.print("SENSOR 2 --- Distance (cm): ");
+  Serial.println(distanceCm_DOWN);
   }
