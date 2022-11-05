@@ -1,8 +1,8 @@
 //ULTRASONIC SENSOR 1
 const int trigPin_UP = 27;
 const int echoPin_UP = 26;
-const int LED_UP = 22;//19
-const int LED_ERROR_UP = 23;//21
+const int LED_UP = 19;
+const int LED_ERROR_UP = 21;
 //ULTRASONIC SENSOR 2
 const int trigPin_DOWN = 25;
 const int echoPin_DOWN = 33;
