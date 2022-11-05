@@ -1,3 +1,6 @@
+TaskHandle_t Sensor1;
+TaskHandle_t Sensor2;
+
 //ULTRASONIC SENSOR 1
 const int trigPin_UP = 27;
 const int echoPin_UP = 26;
@@ -35,84 +38,118 @@ void setup() {
   pinMode(echoPin_DOWN, INPUT); // Sets the echoPin as an Input
   pinMode(LED_DOWN, OUTPUT); // Green LED
   pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED 
+
+  xTaskCreatePinnedToCore(
+             Sensor1code, /* Task function. */
+             "Sensor1",   /* name of task. */
+             10000,     /* Stack size of task */
+             NULL,      /* parameter of the task */
+             1,         /* priority of the task */
+             &Sensor1,    /* Task handle to keep track of created task */
+             0);        /* pin task to core 0 */
+      
+  xTaskCreatePinnedToCore(
+             Sensor2code,  /* Task function. */
+             "Sensor2",    /* name of task. */
+             10000,      /* Stack size of task */
+             NULL,       /* parameter of the task */
+             1,          /* priority of the task */
+             &Sensor2,     /* Task handle to keep track of created task */
+             1);         /* pin task to core 0 */
 }
 
-void loop() {
-
-  // * ULTRASONIC SENSOR 1 *
-  // Clears the trigPin
-  digitalWrite(trigPin_UP, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin_UP, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin_UP, LOW);  
-  
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration_UP = pulseIn(echoPin_UP, HIGH); //ULTRASONIC SENSOR 1
-  
-  
-  // Calculate the distance
-  distanceCm_UP = duration_UP * SOUND_SPEED/2; //ULTRASONIC SENSOR 1
 
 
-  // * ULTRASONIC SENSOR 1 *
-  // Prints the distance in the Serial Monitor 
-  // Green LED twinkle means distance
-  // Red LED means a mistake in the data capturing
-  if (distanceCm_UP < 500)
-    {
-    digitalWrite(LED_ERROR_UP, LOW);
-    delay_led_UP = distanceCm_UP * 2;
-    Serial.print("SENSOR 1 --- Distance (cm): ");
-    Serial.println(distanceCm_UP);
-    digitalWrite(LED_UP, HIGH);
-    delay(delay_led_UP);
-    digitalWrite(LED_UP, LOW);
-    delay(delay_led_UP); 
-    }
-  else{
-    digitalWrite(LED_ERROR_UP, HIGH);
-    Serial.print("SENSOR 1 --- Error ---> "); 
-    Serial.print("Distance (cm): ");
-    Serial.println(distanceCm_UP);
-    }
-
-    
-  // * ULTRASONIC SENSOR 2 *
-  // Clears the trigPin
-  digitalWrite(trigPin_DOWN, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin on HIGH state for 10 micro seconds
-  digitalWrite(trigPin_DOWN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin_DOWN, LOW);
-
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  duration_DOWN = pulseIn(echoPin_DOWN, HIGH); //ULTRASONIC SENSOR 2
+void Sensor1code(void * pvParameters)
+{
+  for(;;)
+  {
   
-  // Calculate the distance 
-  distanceCm_DOWN = duration_DOWN * SOUND_SPEED/2; //ULTRASONIC SENSOR 2
+    // * ULTRASONIC SENSOR 1 *
+    // Clears the trigPin
+    digitalWrite(trigPin_UP, LOW);
+    delayMicroseconds(2);
+    // Sets the trigPin on HIGH state for 10 micro seconds
+    digitalWrite(trigPin_UP, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin_UP, LOW);  
   
-  // * ULTRASONIC SENSOR 2 *
-  // Prints the distance in the Serial Monitor 
-  // Green LED twinkle means distance
-  // Red LED means a mistake in the data capturing
-  if (distanceCm_DOWN < 500)
-    {
-    digitalWrite(LED_ERROR_DOWN, LOW);
-    delay_led_DOWN = distanceCm_DOWN;
-    Serial.print("SENSOR 2 --- Distance (cm): ");
-    Serial.println(distanceCm_DOWN);
-    digitalWrite(LED_DOWN, HIGH);
-    delay(delay_led_DOWN);
-    digitalWrite(LED_DOWN, LOW);
-    delay(delay_led_DOWN); 
-    }
-  else{
-    digitalWrite(LED_ERROR_DOWN, HIGH);
-    Serial.print("SENSOR 2 --- Error ---> "); 
-    Serial.print("Distance (cm): ");
-    Serial.println(distanceCm_DOWN);
-    }
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    duration_UP = pulseIn(echoPin_UP, HIGH); //ULTRASONIC SENSOR 1
+  
+  
+    // Calculate the distance
+    distanceCm_UP = duration_UP * SOUND_SPEED/2; //ULTRASONIC SENSOR 1
+
+
+    // * ULTRASONIC SENSOR 1 *
+    // Prints the distance in the Serial Monitor 
+    // Green LED twinkle means distance
+    // Red LED means a mistake in the data capturing
+    if (distanceCm_UP < 500)
+      {
+      digitalWrite(LED_ERROR_UP, LOW);
+      delay_led_UP = distanceCm_UP * 2;
+      Serial.print("SENSOR 1 --- Distance (cm): ");
+      Serial.println(distanceCm_UP);
+      digitalWrite(LED_UP, HIGH);
+      delay(delay_led_UP);
+      digitalWrite(LED_UP, LOW);
+      delay(delay_led_UP); 
+      }
+    else
+      {
+      digitalWrite(LED_ERROR_UP, HIGH);
+      Serial.print("SENSOR 1 --- Error ---> "); 
+      Serial.print("Distance (cm): ");
+      Serial.println(distanceCm_UP);
+      }
   }
+}
+
+void Sensor2code(void * pvParameters)
+{
+  for(;;)
+  {
+    // * ULTRASONIC SENSOR 2 *
+    // Clears the trigPin
+    digitalWrite(trigPin_DOWN, LOW);
+    delayMicroseconds(2);
+    // Sets the trigPin on HIGH state for 10 micro seconds
+    digitalWrite(trigPin_DOWN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin_DOWN, LOW);
+
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    duration_DOWN = pulseIn(echoPin_DOWN, HIGH); //ULTRASONIC SENSOR 2
+  
+    // Calculate the distance 
+    distanceCm_DOWN = duration_DOWN * SOUND_SPEED/2; //ULTRASONIC SENSOR 2
+  
+    // * ULTRASONIC SENSOR 2 *
+    // Prints the distance in the Serial Monitor 
+    // Green LED twinkle means distance
+    // Red LED means a mistake in the data capturing
+    if (distanceCm_DOWN < 500)
+      {
+      digitalWrite(LED_ERROR_DOWN, LOW);
+      delay_led_DOWN = distanceCm_DOWN * 2;
+      Serial.print("SENSOR 2 --- Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
+      digitalWrite(LED_DOWN, HIGH);
+      delay(delay_led_DOWN);
+      digitalWrite(LED_DOWN, LOW);
+      delay(delay_led_DOWN); 
+      }
+    else
+      {
+      digitalWrite(LED_ERROR_DOWN, HIGH);
+      Serial.print("SENSOR 2 --- Error ---> "); 
+      Serial.print("Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
+      }
+  }
+}
+
+void loop() {}
+    
