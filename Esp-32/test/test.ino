@@ -11,8 +11,10 @@ const int trigPin_DOWN = 25;
 const int echoPin_DOWN = 33;
 const int LED_DOWN = 22;
 const int LED_ERROR_DOWN = 23;
+const int BUZZER = 18;
 
-
+// melodys to a buzzer
+#include "pitches.h"
 
 //define sound speed in cm/uS
 #define SOUND_SPEED 0.034
@@ -38,6 +40,7 @@ void setup() {
   pinMode(echoPin_DOWN, INPUT); // Sets the echoPin as an Input
   pinMode(LED_DOWN, OUTPUT); // Green LED
   pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED 
+  pinMode(BUZZER, OUTPUT);// Buzzer
 
   xTaskCreatePinnedToCore(
              Sensor1code, /* Task function. */
@@ -125,15 +128,22 @@ void Sensor2code(void * pvParameters)
   
     // Calculate the distance 
     distanceCm_DOWN = duration_DOWN * SOUND_SPEED/2; //ULTRASONIC SENSOR 2
-  
+    delay_led_DOWN = distanceCm_DOWN * 2;
+    
     // * ULTRASONIC SENSOR 2 *
     // Prints the distance in the Serial Monitor 
     // Green LED twinkle means distance
     // Red LED means a mistake in the data capturing
+    if (distanceCm_DOWN < 100)
+      {
+      tone(BUZZER, NOTE_GS5);
+      delay(delay_led_DOWN * 2);
+      noTone(BUZZER);
+      
+      }
     if (distanceCm_DOWN < 500)
       {
-      digitalWrite(LED_ERROR_DOWN, LOW);
-      delay_led_DOWN = distanceCm_DOWN * 2;
+      digitalWrite(LED_ERROR_DOWN, LOW); //ERROR LED OFF
       Serial.print("SENSOR 2 --- Distance (cm): ");
       Serial.println(distanceCm_DOWN);
       digitalWrite(LED_DOWN, HIGH);
