@@ -1,2 +1,2 @@
 # BIM
-Proyecto BIM (baculo inteligente y modular)
+Proyecto BIM (baston inteligente y modular)
