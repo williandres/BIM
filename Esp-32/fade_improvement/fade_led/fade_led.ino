@@ -18,7 +18,7 @@
  */
 
 
-int ledPin = 9;    // LED connected to digital pin 9
+int ledPin = 15;    // LED connected to digital pin 9
 
 void setup()  { 
   // nothing happens in setup 
