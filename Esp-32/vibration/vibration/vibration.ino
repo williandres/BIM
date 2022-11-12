@@ -1,4 +1,4 @@
-const int vib = 2;
+const int vib = 4;
 
 void setup() {
   // put your setup code here, to run once:

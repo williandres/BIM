@@ -1,17 +1,22 @@
+
+
 TaskHandle_t Sensor1;
 TaskHandle_t Sensor2;
 
 //ULTRASONIC SENSOR 1
-const int trigPin_UP = 27;
-const int echoPin_UP = 26;
-const int LED_UP = 19;
-const int LED_ERROR_UP = 21;
+const int trigPin_UP = 13;
+const int echoPin_UP = 12;
+const int LED_UP = 26;
+const int LED_ERROR_UP = 25;
 //ULTRASONIC SENSOR 2
-const int trigPin_DOWN = 25;
-const int echoPin_DOWN = 33;
-const int LED_DOWN = 22;
-const int LED_ERROR_DOWN = 23;
-const int BUZZER = 18;
+const int trigPin_DOWN = 14;
+const int echoPin_DOWN = 27;
+const int LED_DOWN = 15;
+const int LED_ERROR_DOWN = 32;
+const int BUZZER = 2;
+
+//VIBRATION
+const int vib = 4;
 
 // melodys to a buzzer
 #include "pitches.h"
@@ -19,17 +24,17 @@ const int BUZZER = 18;
 //define sound speed in cm/uS
 #define SOUND_SPEED 0.034
 
-long duration_UP;
-long duration_DOWN;
-float distanceCm_UP;
-float distanceCm_DOWN;
-float delay_led_UP;
-float delay_led_DOWN;
-
- 
-
-void setup() {
-  Serial.begin(115200); // Starts the serial communication
+  long duration_UP;
+  long duration_DOWN;
+  float distanceCm_UP;
+  float distanceCm_DOWN;
+  float delay_led_UP;
+  float delay_led_DOWN;
+  
+   
+  
+  void setup() {
+  Serial.begin(92600); // Starts the serial communication
   // ULTRASONIC SENSOR 1
   pinMode(trigPin_UP, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin_UP, INPUT); // Sets the echoPin as an Input
@@ -39,8 +44,11 @@ void setup() {
   pinMode(trigPin_DOWN, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin_DOWN, INPUT); // Sets the echoPin as an Input
   pinMode(LED_DOWN, OUTPUT); // Green LED
-  pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED 
+  pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED
+
+  // EXTRAS 
   pinMode(BUZZER, OUTPUT);// Buzzer
+  pinMode(vib, OUTPUT); // Vibration 0
 
   xTaskCreatePinnedToCore(
              Sensor1code, /* Task function. */
@@ -137,7 +145,9 @@ void Sensor2code(void * pvParameters)
     if (distanceCm_DOWN < 100)
       {
       tone(BUZZER, NOTE_GS5);
+      digitalWrite(vib, HIGH);
       delay(delay_led_DOWN * 2);
+      digitalWrite(vib, LOW);
       noTone(BUZZER);
       
       }
