@@ -1,4 +1,4 @@
-const int BUZZER = 18;
+const int BUZZER = 2;                                                   ;
 
 void setup() {
     Serial.begin(115200); // Starts the serial communication
