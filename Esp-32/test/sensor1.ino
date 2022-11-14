@@ -2,7 +2,13 @@ void Sensor1code(void * pvParameters)
 {
   for(;;)
   {
-  
+  if (ESP_BT.available()) 
+    {
+    incoming = ESP_BT.read(); //Read what we receive
+    Serial.println(incoming);
+    }
+
+    
     // * ULTRASONIC SENSOR 1 *
     // Clears the trigPin
     digitalWrite(trigPin_UP, LOW);
@@ -14,7 +20,6 @@ void Sensor1code(void * pvParameters)
   
     // Reads the echoPin, returns the sound wave travel time in microseconds
     duration_UP = pulseIn(echoPin_UP, HIGH); //ULTRASONIC SENSOR 1
-  
   
     // Calculate the distance
     distanceCm_UP = duration_UP * SOUND_SPEED/2; //ULTRASONIC SENSOR 1

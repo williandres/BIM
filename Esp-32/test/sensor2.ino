@@ -29,7 +29,6 @@ void Sensor2code(void * pvParameters)
       delay(delay_led_DOWN * 2);
       digitalWrite(vib1, LOW);
       noTone(BUZZER);
-      
       }
     if (distanceCm_DOWN < 500)
       {

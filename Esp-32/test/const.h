@@ -31,5 +31,7 @@ float distanceCm_UP;
 float distanceCm_DOWN;
 float delay_led_UP;
 float delay_led_DOWN;
-  
+char incoming;
+
+
    
