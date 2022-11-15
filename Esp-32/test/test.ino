@@ -36,24 +36,28 @@ void Sensor1code(void * pvParameters)
     // Green LED twinkle means distance
     // Red LED means a mistake in the data capturing
     if (distanceCm_UP < dist1)
-      {
+      {/*
       digitalWrite(vib1, HIGH);
       delay(delay_led_UP * 2);
       digitalWrite(vib1, LOW);
+      */
+      countms(vib1, delay_led_UP * 2, delay_led_UP * 2);
       }
     if (distanceCm_UP < 500)
       {
       digitalWrite(LED_ERROR_UP, LOW);
-      //Serial.print("SENSOR 1 --- Distance (cm): ");
-      //Serial.println(distanceCm_UP);
-      digitalWrite(LED_UP, HIGH);
-      delay(delay_led_UP);
-      digitalWrite(LED_UP, LOW);
-      delay(delay_led_UP); 
+      Serial.print("SENSOR 1 --- Distance (cm): ");
+      Serial.println(distanceCm_UP);
+      //digitalWrite(LED_UP, HIGH);
+      //delay(delay_led_UP);
+      //digitalWrite(LED_UP, LOW);
+      //delay(delay_led_UP); 
+      countms(LED_UP, delay_led_UP, delay_led_UP);
       }
     else
       {
       digitalWrite(vib1, LOW);
+      digitalWrite(LED_UP, LOW);
       digitalWrite(LED_ERROR_UP, HIGH);
       //Serial.print("SENSOR 1 --- Error ---> "); 
       //Serial.print("Distance (cm): ");
