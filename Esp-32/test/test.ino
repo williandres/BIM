@@ -93,8 +93,9 @@ void Sensor2code(void * pvParameters)
     // Red LED means a mistake in the data capturing
     if (distanceCm_DOWN < dist2)
       {
+      countmsBz(BUZZER, delay_led_UP * 2, delay_led_UP * 2, NOTE_GS5);
       tone(BUZZER, NOTE_GS5);
-      countms(vib2, delay_led_UP * 2, delay_led_UP * 2);
+      countms2(vib2, delay_led_UP * 2, delay_led_UP * 2);
       delay(delay_led_UP * 2);
       noTone(BUZZER);
       }
