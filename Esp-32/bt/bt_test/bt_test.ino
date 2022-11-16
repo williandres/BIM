@@ -1,6 +1,6 @@
 #include "BluetoothSerial.h"
 BluetoothSerial ESP_BT;
-String incoming; 
+char incoming; 
 
 void setup() {
   Serial.begin(115200); // Starts the serial communication
@@ -12,6 +12,8 @@ void loop()
     if (ESP_BT.available()) 
     {
     incoming = ESP_BT.read(); //Read what we receive
-    Serial.print(incoming);
+    Serial.println(incoming);
+
+    if 
     }
   }
