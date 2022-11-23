@@ -1,8 +1,18 @@
 #include "BluetoothSerial.h"
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
 BluetoothSerial ESP_BT;
 char incoming; 
 char bytes[0];
 int i;
+
+int dist1;
+int dist2;
+
+String value; 
 
 void setup() {
   Serial.begin(115200); // Starts the serial communication
@@ -23,7 +33,7 @@ void loop()
       }
       if (incoming == 'z') //EVALUATE
       {
-        for (byte x = 0; x < i; x = x + 1) 
+        for (int x = 0; x < i; x = x + 1) 
           {
           Serial.println(bytes[x]);
           }
@@ -41,6 +51,12 @@ void loop()
 
 void option()
 {
+  /////
+  ////
+  ///
+  // SENSORS
+
+  //S1
   if (bytes[1] == 'q')
     {
        Serial.println("Sensor 1 : ON");
@@ -49,6 +65,7 @@ void option()
     {
       Serial.println("Sensor 1 : OFF");
     }
+  //S2
   if (bytes[1] == 'e')
     {
       Serial.println("Sensor 2 : ON");
@@ -57,18 +74,47 @@ void option()
     {
       Serial.println("Sensor 2 : OFF");
     }
+  // DIST 1
   if (bytes[1] == 'm')
     {
+      value = "";
+      for (int x = 2; x < i; x = x + 1)//LIST TO STRING
+      {
+        value = value + bytes[x];
+      }
+      Serial.println(value);
       Serial.println("Assigned distance in Sensor 1");
+      dist1 = value.toInt(); // STR to INT
     }
+  // DIST 2  
   if (bytes[1] == 'n')
     {
+      value = "";
+      for (int x = 2; x < i; x = x + 1)//LIST TO STRING
+      {
+        value = value + bytes[x];
+      }
+      Serial.println(value);
       Serial.println("Assigned distance in Sensor 2");
+      dist2 = value.toInt(); // STR to INT
     }
+  /////
+  ////
+  ///
+  // BUZZERS
 
 
 
 
+
+
+
+
+
+  /////
+  ////
+  ///
+  // VIBS
 }
 
  
