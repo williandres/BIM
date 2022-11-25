@@ -21,12 +21,9 @@ const int vib2 = 18;
 const int vib3 = 19;
 const int vib4 = 21;
 
-//APP
-int sen1 = 1;
-int sen2 = 1;
-int dist1 = 100;
-int dist2 = 100;
-
+//BUZZER
+int resolution = 8;
+int channel = 0;
 
 //////////////////////////
 #define SOUND_SPEED 0.034
@@ -36,7 +33,16 @@ float distanceCm_UP;
 float distanceCm_DOWN;
 float delay_led_UP;
 float delay_led_DOWN;
-String incoming;
+char incoming;
 
 
-   
+///////STATUS///////
+bool bzStatus = true;
+bool s1Status = true;
+bool s2Status = true;
+
+bool v0Status = true;
+bool v1Status = true;
+bool v2Status = true;
+bool v3Status = false;
+bool v4Status = false;

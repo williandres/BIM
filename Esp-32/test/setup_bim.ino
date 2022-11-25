@@ -19,8 +19,10 @@ void setup_bim()
   pinMode(LED_DOWN, OUTPUT); // Green LED
   pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED
 
+  //BUZZER
+  pinMode(BUZZER, OUTPUT); // BZ
+  
   // EXTRAS 
-  pinMode(BUZZER, OUTPUT);// Buzzer
   pinMode(vib0, OUTPUT); // Vibration 0
   pinMode(vib1, OUTPUT); // Vibration 1
   pinMode(vib2, OUTPUT); // Vibration 2
