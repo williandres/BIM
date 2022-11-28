@@ -21,6 +21,9 @@ const int vib2 = 18;
 const int vib3 = 19;
 const int vib4 = 21;
 
+int set_vib_s1[5] = {0,1,0,1,1};
+int set_vib_s2[5] = {0,0,0,0,0};
+
 //BUZZER
 int resolution = 8;
 int channel = 0;

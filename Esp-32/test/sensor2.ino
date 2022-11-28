@@ -23,7 +23,7 @@ void Sensor2code(void * pvParameters)
     if (distanceCm_DOWN < 100)
       {
       // VIBS
-      vibs(delay_led_DOWN, vib2);
+      vibs(delay_led_DOWN, set_vib_s2);
       }
     if (distanceCm_DOWN < 500)
       {
