@@ -2,6 +2,8 @@ void Sensor1code(void * pvParameters)
 {
   for(;;)
   { 
+    if (sensor_status[0] == 1)
+    {
     // * ULTRASONIC SENSOR 1 *
     digitalWrite(trigPin_UP, LOW);
     delayMicroseconds(20);
@@ -20,16 +22,22 @@ void Sensor1code(void * pvParameters)
     // Prints the distance in the Serial Monitor 
     // Green LED twinkle means distance
     // Red LED means a mistake in the data capturing
-    if (distanceCm_UP < 100)
+    if (distanceCm_UP < dist1)
       {
-      // VIBS
-      vibs(delay_led_UP, set_vib_s1);
+      // VIBS & BUZZER
+      vibs(delay_led_UP, set_vib_s1, 1);
       }
     if (distanceCm_UP < 500)
       {
-      digitalWrite(LED_ERROR_UP, LOW);
-      
       //LED
+      if (led_status[0] == 1 and led_status[1] == 1)
+      {
+         digitalWrite(LED_ERROR, LOW);
+         led(delay_led_UP*(3/2), LED);
+      }
+
+      // TEST
+      digitalWrite(LED_ERROR_UP, LOW);
       led(delay_led_UP*(3/2), LED_UP);
       //Serial.print("SENSOR 1 --- Distance (cm): ");
       //Serial.println(distanceCm_UP);
@@ -37,11 +45,19 @@ void Sensor1code(void * pvParameters)
       }
     else
       {
+      //LED
+      if (led_status[0] == 1 and led_status[1] == 1)
+      {
+         digitalWrite(LED_ERROR, HIGH); 
+      }
+
+      //TEST
       digitalWrite(LED_ERROR_UP, HIGH);
       //Serial.print("SENSOR 1 --- Error ---> "); 
       //Serial.print("Distance (cm): ");
       //Serial.println(distanceCm_UP);
       }
       delay(100);
+  }
   }
 }
