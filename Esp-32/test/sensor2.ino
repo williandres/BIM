@@ -22,26 +22,25 @@ void Sensor2code(void * pvParameters)
     // Red LED means a mistake in the data capturing
     if (distanceCm_DOWN < 100)
       {
-      countmsBZ(BUZZER, 1/delay_led_DOWN * 2, 1/delay_led_DOWN  * 2);
-      countmsV2(vib2, 1/delay_led_DOWN * 2, 1/delay_led_DOWN  * 2);
+      // VIBS
+      vibs(delay_led_DOWN, vib2);
       }
     if (distanceCm_DOWN < 500)
       {
-      digitalWrite(vib2, LOW);
       digitalWrite(LED_ERROR_DOWN, LOW); //ERROR LED OFF
-      Serial.print("SENSOR 2 --- Distance (cm): ");
-      Serial.println(distanceCm_DOWN);
-      countmsS2(LED_DOWN, 1/delay_led_DOWN, 1/delay_led_DOWN);
+
+      // LED
+      led(delay_led_DOWN, LED_DOWN);
+      //Serial.print("SENSOR 2 --- Distance (cm): ");
+      //Serial.println(distanceCm_DOWN);
 
       }
     else
       {
-      digitalWrite(LED_DOWN, LOW);
-      digitalWrite(vib2, LOW);
       digitalWrite(LED_ERROR_DOWN, HIGH);
-      Serial.print("SENSOR 2 --- Error ---> "); 
-      Serial.print("Distance (cm): ");
-      Serial.println(distanceCm_DOWN);
+      //Serial.print("SENSOR 2 --- Error ---> "); 
+      //Serial.print("Distance (cm): ");
+      //Serial.println(distanceCm_DOWN);
       }
     delay(100);
   }
