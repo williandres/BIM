@@ -10,15 +10,20 @@ void setup_bim()
   // ULTRASONIC SENSOR 1
   pinMode(trigPin_UP, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin_UP, INPUT); // Sets the echoPin as an Input
-  pinMode(LED_UP, OUTPUT); // Green LED
-  pinMode(LED_ERROR_UP, OUTPUT); // Error LED 
+  //pinMode(LED_UP, OUTPUT); // Green LED
+  //pinMode(LED_ERROR_UP, OUTPUT); // Error LED 
   
   // ULTRASONIC SENSOR 2
   pinMode(trigPin_DOWN, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin_DOWN, INPUT); // Sets the echoPin as an Input
-  pinMode(LED_DOWN, OUTPUT); // Green LED
-  pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED
+  //pinMode(LED_DOWN, OUTPUT); // Green LED
+  //pinMode(LED_ERROR_DOWN, OUTPUT); // Error LED
 
+  //LED
+  pinMode(LED_ERROR, OUTPUT); 
+  pinMode(LED, OUTPUT);   
+
+  
   //BUZZER
   pinMode(BUZZER, OUTPUT); // BZ
   

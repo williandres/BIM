@@ -25,22 +25,18 @@ void Sensor2code(void * pvParameters)
     if (distanceCm_DOWN < dist2)
       {
       // VIBS & BUZZER
-      vibs(delay_led_DOWN, set_vib_s2, 2);
+      //vibs(delay_led_DOWN, set_vib_s2, 2);
       }
     if (distanceCm_DOWN < 500)
       {
       // LED
       if (led_status[0] == 1 and led_status[1] == 2)
       {
-         digitalWrite(LED_ERROR, LOW);
-         led(delay_led_DOWN*(3/2), LED);
+         //digitalWrite(LED_ERROR, LOW);
+         //led(delay_led_DOWN*(3/2), LED);
       }
-      
-      //TEST
-      digitalWrite(LED_ERROR_DOWN, LOW);
-      led(delay_led_DOWN, LED_DOWN);
-      //Serial.print("SENSOR 2 --- Distance (cm): ");
-      //Serial.println(distanceCm_DOWN);
+      Serial.print("SENSOR 2 --- Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
 
       }
     else
@@ -48,14 +44,11 @@ void Sensor2code(void * pvParameters)
       //LED
       if (led_status[0] == 1 and led_status[1] == 2)
       {
-         digitalWrite(LED_ERROR, HIGH); 
+         //digitalWrite(LED_ERROR, HIGH); 
       }
-        
-      //TEST  
-      digitalWrite(LED_ERROR_DOWN, HIGH);
-      //Serial.print("SENSOR 2 --- Error ---> "); 
-      //Serial.print("Distance (cm): ");
-      //Serial.println(distanceCm_DOWN);
+      Serial.print("SENSOR 2 --- Error ---> "); 
+      Serial.print("Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
       }
     delay(100);
   }
