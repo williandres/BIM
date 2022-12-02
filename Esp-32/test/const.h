@@ -25,13 +25,13 @@ int set_vib_s1[5] = {1,1,0,0,0};
 int set_vib_s2[5] = {0,0,0,0,1};
 
 //BUZZER
-const int BUZZER = 2;
+const int BUZZER = 32;
 int note = 1000;
-int buzzer_status[2] = {1,2}; // {ON/OFF, SENSOR ASSIGNED}
+int buzzer_status[2] = {1,1}; // {ON/OFF, SENSOR ASSIGNED}
 
 
 //LED
-int led_status[2] = {1, 1}; // {ON/OFF, SENSOR ASSIGNED}
+int led_status[2] = {1, 2}; // {ON/OFF, SENSOR ASSIGNED}
 const int LED_ERROR = 23;
 const int LED = 22;
 
@@ -43,7 +43,6 @@ float distanceCm_UP;
 float distanceCm_DOWN;
 float delay_led_UP;
 float delay_led_DOWN;
-char incoming;
 
 // USER CONFIGURATION
 int dist1 = 100;

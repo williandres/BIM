@@ -5,7 +5,7 @@ TaskHandle_t Sensor2;
 void setup_bim() 
   {
   Serial.begin(115200); // Starts the serial communication
-  //ESP_BT.begin("BIM");
+  ESP_BT.begin("BIM");
   
   // ULTRASONIC SENSOR 1
   pinMode(trigPin_UP, OUTPUT); // Sets the trigPin as an Output

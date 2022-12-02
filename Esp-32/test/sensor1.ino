@@ -25,7 +25,7 @@ void Sensor1code(void * pvParameters)
     if (distanceCm_UP < dist1)
       {
       // VIBS & BUZZER
-      //vibs(delay_led_UP, set_vib_s1, 1);
+      vibs(delay_led_UP, set_vib_s1, 1);
       }
     if (distanceCm_UP < 500)
       {
@@ -35,8 +35,8 @@ void Sensor1code(void * pvParameters)
          digitalWrite(LED_ERROR, LOW);
          led(delay_led_UP*(3/2), LED);
       }
-      //Serial.print("SENSOR 1 --- Distance (cm): ");
-      //Serial.println(distanceCm_UP);
+      Serial.print("SENSOR 1 --- Distance (cm): ");
+      Serial.println(distanceCm_UP);
       
       }
     else
@@ -46,9 +46,9 @@ void Sensor1code(void * pvParameters)
       {
          digitalWrite(LED_ERROR, HIGH); 
       }
-      //Serial.print("SENSOR 1 --- Error ---> "); 
-      //Serial.print("Distance (cm): ");
-      //Serial.println(distanceCm_UP);
+      Serial.print("SENSOR 1 --- Error ---> "); 
+      Serial.print("Distance (cm): ");
+      Serial.println(distanceCm_UP);
       }
       delay(100);
   }

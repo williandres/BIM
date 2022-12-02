@@ -8,7 +8,6 @@ BluetoothSerial ESP_BT;
 char incoming; 
 char bytes[0];
 int i;
-
 int dist1;
 int dist2;
 
