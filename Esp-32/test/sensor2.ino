@@ -35,8 +35,8 @@ void Sensor2code(void * pvParameters)
          digitalWrite(LED_ERROR, LOW);
          led(delay_led_DOWN*(3/2), LED);
       }
-      //Serial.print("SENSOR 2 --- Distance (cm): ");
-      //Serial.println(distanceCm_DOWN);
+      Serial.print("SENSOR 2 --- Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
 
       }
     else
@@ -46,9 +46,9 @@ void Sensor2code(void * pvParameters)
       {
          digitalWrite(LED_ERROR, HIGH); 
       }
-      //Serial.print("SENSOR 2 --- Error ---> "); 
-      //Serial.print("Distance (cm): ");
-      //Serial.println(distanceCm_DOWN);
+      Serial.print("SENSOR 2 --- Error ---> "); 
+      Serial.print("Distance (cm): ");
+      Serial.println(distanceCm_DOWN);
       }
     delay(100);
   }

@@ -8,7 +8,6 @@
 #include <sstream>
 using namespace std;
 BluetoothSerial ESP_BT;
-char incoming; 
 char bytes[0];
 int i;
 String value;
@@ -251,12 +250,12 @@ void option()
   // LEDS
   if (bytes[1] == '-')
     {
-        if (bytes[1] == 'a')
+        if (bytes[2] == 's')
         {
           led_status[0]= 1;
           Serial.println("LED ON");
         }
-        if (bytes[1] == 'b')
+        if (bytes[2] == 'b')
         {
           led_status[0]= 0;
           Serial.println("LED OFF");

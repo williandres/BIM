@@ -43,7 +43,8 @@ float distanceCm_UP;
 float distanceCm_DOWN;
 float delay_led_UP;
 float delay_led_DOWN;
+char incoming;
 
 // USER CONFIGURATION
-int dist1 = 100;
-int dist2 = 100;
+int dist1 = 150;
+int dist2 = 50;
